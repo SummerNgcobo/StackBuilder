@@ -1,0 +1,11 @@
+name: Deploy to HubSpot
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install -g @hubspot/cli
+      - run: hs upload . --path=/your-hubspot-folder --auth=${{ secrets.HUBSPOT_API_KEY }}
